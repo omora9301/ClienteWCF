@@ -1,0 +1,65 @@
+﻿@model List<ClienteWCF.ServiceReferenceUsuarios.BE>
+
+
+@{
+    ViewBag.Title = "Lista";
+}
+<a href="/Home/Agregar" class="btn btn-primary">Nuevo</a>
+<br />
+<form action="/" method="post" class="form-inline">
+    <div class="form-group">
+        @Html.TextBox("u_idu", null, new { @class = "form-control", placeholder = "Id Usuario" })
+    </div>
+
+    <div class="form-group">
+        @Html.TextBox("u_nombre", null, new { @class = "form-control", placeholder = "Nombre" })
+    </div>
+    <input type="submit" name="name" value="filtrar" formaction="/Home/Obtener" class="btn btn-success">
+</form>
+<hr />
+<table class="table table-striped">
+    <tr class="bg-success">
+        <th>
+            Id
+        </th>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Paterno
+        </th>
+        <th>
+            Materno
+        </th>
+        <th>
+            Edad
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr title="@item.U_idu">
+    <td>
+        @Html.DisplayFor(modelItem => item.U_idu)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Nombre)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Paterno)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Materno)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Edad)
+    </td>
+    <td>
+        @*@Html.ActionLink("Editar", "Edit", new { u_idu = item.U_idu }, new { @class = "btn btn-outline-warning" })*@
+        @*@Html.ActionLink("Eliminar", "Delete", new { u_idu = item.U_idu }, new { @class = "btn btn-outline-danger" })*@
+        <a href="/Home/Delete/@item.U_idu" onclick="return confirm('Eliminar Registro');">Eliminar</a>
+    </td>
+</tr>
+    }
+
+</table>
